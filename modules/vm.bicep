@@ -2,6 +2,7 @@ param location string
 
 param spokeVmName string 
 param onpVmName string
+param addsPrivateIpAddress string
 
 param vmAdminUserName string
 @secure()
@@ -88,7 +89,8 @@ resource onpVmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
       {
         name: 'ipconfig1'
         properties: {
-          privateIPAllocationMethod: 'Dynamic'
+          privateIPAllocationMethod: 'Static'
+          privateIPAddress: addsPrivateIpAddress
           subnet: {
             id: vnetOnp::addsSubnet.id
           }

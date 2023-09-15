@@ -1,6 +1,7 @@
 param vnetName string = 'vnet-hub'
 param location string = 'japaneast'
 param onpDomainName string = 'zukakoad.local.'
+param adprInboundIp string = '10.0.17.4'
 
 resource vnetHub 'Microsoft.Network/virtualNetworks@2020-05-01' existing = {
   name: vnetName
@@ -27,7 +28,9 @@ resource dnsResolvers 'Microsoft.Network/dnsResolvers@2022-07-01' = {
     properties: {
       ipConfigurations: [
         {
-          privateIpAllocationMethod: 'Dynamic'
+          // privateIpAllocationMethod: 'Dynamic'
+          privateIpAddress: adprInboundIp
+          privateIpAllocationMethod: 'Static'
           subnet: {
             id: vnetHub::subnetInbount.id
           }
@@ -81,3 +84,5 @@ resource fwRules 'Microsoft.Network/dnsForwardingRulesets/forwardingRules@2022-0
     }]
   }
 }
+
+output inboundEndpointIp string = dnsResolvers::inboundEndpoints.properties.ipConfigurations[0].privateIpAddress
