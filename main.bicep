@@ -10,6 +10,7 @@ module createVnet './modules/vnet.bicep' = {
   params: {
     location: location
     adprInboundIp: adprInboundIp
+    addsPrivateIp: addsPrivateIp
   }
 }
 
@@ -46,10 +47,3 @@ module createPrivateStrgAcct './modules/storage.bicep' = {
     location: location
   }
 }
-
-// module updateSetting './modules/updateSettings.bicep' = {
-//   name: 'module-updateSetting'
-//   params: {
-//     inboundEndpointIp: createAdpr.outputs.inboundEndpointIp
-//   }
-// }

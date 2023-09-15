@@ -1,6 +1,7 @@
 // @allowed()
 param location string = 'japaneast'
 param adprInboundIp string
+param addsPrivateIp string
 // create nsg for hub
 resource nsgHub 'Microsoft.Network/networkSecurityGroups@2019-11-01' = {
   name: 'nsg-hub'
@@ -180,6 +181,11 @@ resource vnetOnp 'Microsoft.Network/virtualNetworks@2019-11-01' = {
     addressSpace: {
       addressPrefixes: [
         '10.100.0.0/16'
+      ]
+    }
+    dhcpOptions: {
+      dnsServers: [
+        addsPrivateIp
       ]
     }
     subnets: [
