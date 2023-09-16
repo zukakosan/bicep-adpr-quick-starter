@@ -14,6 +14,23 @@ module createVnet './modules/vnet.bicep' = {
   }
 }
 
+module createVpngw './modules/vpngw.bicep' = {
+  name: 'module-vpngw'
+  params:{
+    location: location
+  }
+  dependsOn:[
+    createVnet
+  ]
+}
+
+module createPeering './modules/peering.bicep' = {
+  name: 'module-peering'
+  dependsOn:[
+    createVpngw 
+  ]
+}
+
 module createAdpr './modules/adpr.bicep' = {
   name: 'module-adpr'
   params: {
