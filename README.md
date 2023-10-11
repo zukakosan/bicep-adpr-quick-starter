@@ -69,3 +69,6 @@ Name:    strgacct67y6xprrpw5cw.privatelink.blob.core.windows.net
 Address:  10.1.1.4
 Aliases:  strgacct67y6xprrpw5cw.blob.core.windows.net
 ```
+
+# Lisence
+This project is licensed under the MIT License, see the LICENSE.txt file for details.
