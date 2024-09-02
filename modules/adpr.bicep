@@ -17,9 +17,9 @@ resource dnsResolvers 'Microsoft.Network/dnsResolvers@2022-07-01' = {
   name: 'adpr-hub'
   location: location
   properties: {
-     virtualNetwork: {
+    virtualNetwork: {
       id: vnetHub.id
-     }
+    }
   }
 
   resource inboundEndpoints 'inboundEndpoints' = {
@@ -78,10 +78,12 @@ resource fwRules 'Microsoft.Network/dnsForwardingRulesets/forwardingRules@2022-0
   name: 'onpremise-domain-forwarding'
   properties: {
     domainName: onpDomainName
-    targetDnsServers: [{
-      ipAddress:'10.100.1.4'
-      port:53
-    }]
+    targetDnsServers: [
+      {
+        ipAddress: '10.100.1.4'
+        port: 53
+      }
+    ]
   }
 }
 

@@ -1,81 +1,37 @@
-// @allowed()
 param location string = 'japaneast'
 param adprInboundIp string
 param addsPrivateIp string
+
+var securityRules = loadJsonContent('./nsgrules/security-rules.json')
 // create nsg for hub
-resource nsgHub 'Microsoft.Network/networkSecurityGroups@2019-11-01' = {
+resource nsgHub 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   name: 'nsg-hub'
   location: location
   properties: {
-    // securityRules: [
-    //   {
-    //     name: 'nsgRule'
-    //     properties: {
-    //       description: 'description'
-    //       protocol: 'Tcp'
-    //       sourcePortRange: '*'
-    //       destinationPortRange: '*'
-    //       sourceAddressPrefix: '*'
-    //       destinationAddressPrefix: '*'
-    //       access: 'Allow'
-    //       priority: 100
-    //       direction: 'Inbound'
-    //     }
-    //   }
-    // ]
+    securityRules: securityRules
   }
 }
 
 // create nsg for spoke
-resource nsgSpoke 'Microsoft.Network/networkSecurityGroups@2019-11-01' = {
+resource nsgSpoke 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   name: 'nsg-spoke'
   location: location
   properties: {
-  //   securityRules: [
-  //     {
-  //       name: 'nsgRule'
-  //       properties: {
-  //         description: 'description'
-  //         protocol: 'Tcp'
-  //         sourcePortRange: '*'
-  //         destinationPortRange: '*'
-  //         sourceAddressPrefix: '*'
-  //         destinationAddressPrefix: '*'
-  //         access: 'Allow'
-  //         priority: 100
-  //         direction: 'Inbound'
-  //       }
-  //     }
-  //   ]
+    securityRules: securityRules
   }
 }
 
 // create nsg for onp
-resource nsgOnp 'Microsoft.Network/networkSecurityGroups@2019-11-01' = {
+resource nsgOnp 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   name: 'nsg-onp'
   location: location
   properties: {
-    // securityRules: [
-    //   {
-    //     name: 'nsgRule'
-    //     properties: {
-    //       description: 'description'
-    //       protocol: 'Tcp'
-    //       sourcePortRange: '*'
-    //       destinationPortRange: '*'
-    //       sourceAddressPrefix: '*'
-    //       destinationAddressPrefix: '*'
-    //       access: 'Allow'
-    //       priority: 100
-    //       direction: 'Inbound'
-    //     }
-    //   }
-    // ]
+    securityRules: securityRules
   }
 }
 param vnetHubName string = 'vnet-hub'
 // create hub vnet
-resource vnetHub 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+resource vnetHub 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: vnetHubName
   location: location
   properties: {
@@ -136,14 +92,14 @@ resource vnetHub 'Microsoft.Network/virtualNetworks@2019-11-01' = {
       }
     ]
   }
-  // refer existing subnet
-  resource gatewaySubnetHub 'subnets' existing = {
-    name : 'GatewaySubnet'
-  }
+  //// refer existing subnet
+  //resource gatewaySubnetHub 'subnets' existing = {
+  //  name : 'GatewaySubnet'
+  //}
 }
 
 // create spoke vnet
-resource vnetSpoke 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+resource vnetSpoke 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: 'vnet-spoke'
   location: location
   properties: {
@@ -180,7 +136,7 @@ resource vnetSpoke 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   }
 }
 
-resource vnetOnp 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+resource vnetOnp 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: 'vnet-onp'
   location: location
   properties: {
@@ -212,8 +168,8 @@ resource vnetOnp 'Microsoft.Network/virtualNetworks@2019-11-01' = {
       }
     ]
   }
-  // refer existing subnet
-  resource gatewaySubnetOnp 'subnets' existing = {
-    name : 'GatewaySubnet'
-  }
+  //// refer existing subnet
+  //resource gatewaySubnetOnp 'subnets' existing = {
+  //  name : 'GatewaySubnet'
+  //}
 }
