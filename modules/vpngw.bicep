@@ -15,7 +15,7 @@ resource vnetOnp 'Microsoft.Network/virtualNetworks@2022-05-01' existing = {
 }
 
 // create public ip address for vpngw hub
-resource pipVpnGatewayHub 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
+resource pipVpnGatewayHub 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
   name: 'vpngw-hub-pip'
   location: location
   sku: {
@@ -27,7 +27,7 @@ resource pipVpnGatewayHub 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
 }
 
 // create public ip address for vpngw onp
-resource pipVpnGatewayOnp 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
+resource pipVpnGatewayOnp 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
   name: 'vpngw-onp-pip'
   location: location
   sku: {
@@ -39,7 +39,7 @@ resource pipVpnGatewayOnp 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
 }
 
 // create vpngw for hub vnet
-resource vpnGatewayHub 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
+resource vpnGatewayHub 'Microsoft.Network/virtualNetworkGateways@2023-11-01' = {
   name: 'vpngw-hub'
   location: location
   properties: {
@@ -68,7 +68,7 @@ resource vpnGatewayHub 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
 }
 
 // create vpngw for onp vnet
-resource vpnGatewayOnp 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
+resource vpnGatewayOnp 'Microsoft.Network/virtualNetworkGateways@2023-11-01' = {
   name: 'vpngw-onp'
   location: location
   properties: {
@@ -97,7 +97,7 @@ resource vpnGatewayOnp 'Microsoft.Network/virtualNetworkGateways@2020-11-01' = {
 }
 
 // create vpngw connection for hub vnet
-resource vpnConnectionHubOnp 'Microsoft.Network/connections@2020-11-01' = {
+resource vpnConnectionHubOnp 'Microsoft.Network/connections@2023-11-01' = {
   name: 'vpngw-conncetion-hub-onp'
   location: location
   properties: {
@@ -116,7 +116,7 @@ resource vpnConnectionHubOnp 'Microsoft.Network/connections@2020-11-01' = {
 }
 
 // create vpngw connection for hub vnet
-resource vpnConnectionOnpHub 'Microsoft.Network/connections@2023-04-01' = {
+resource vpnConnectionOnpHub 'Microsoft.Network/connections@2023-11-01' = {
   name: 'vpngw-conncetion-onp-hub'
   location: location
   properties: {
