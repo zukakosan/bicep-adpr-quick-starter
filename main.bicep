@@ -1,7 +1,9 @@
-param location string = 'japaneast'
-param vmAdminUserName string = 'AzureAdmin'
+param vmAdminUserName string
 @secure()
 param vmAdminPassword string
+param vnetHubName string
+
+param location string = resourceGroup().location
 param adprInboundIp string = '10.0.17.4'
 param addsPrivateIp string = '10.100.1.4'
 
@@ -9,6 +11,7 @@ module createVnet './modules/vnet.bicep' = {
   name: 'module-vnet'
   params: {
     location: location
+    vnetHubName: vnetHubName
     adprInboundIp: adprInboundIp
     addsPrivateIp: addsPrivateIp
   }
@@ -63,4 +66,24 @@ module createPrivateStrgAcct './modules/storage.bicep' = {
   params: {
     location: location
   }
+}
+
+module createLaw './modules/law.bicep' = {
+  name: 'module-law'
+  params: {
+    location: location
+    lawName: 'law-dnslog'
+  }
+}
+module dnslog './modules/dnslog.bicep' = {
+  name: 'module-dnslog'
+  params: {
+    location: location
+    dnsRvPlcName: 'dnsRvPlcName'
+    vnetHubName: vnetHubName
+    lawId: createLaw.outputs.lawId
+  }
+  dependsOn:[
+    createVnet
+  ]
 }
