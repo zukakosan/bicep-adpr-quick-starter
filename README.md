@@ -34,6 +34,10 @@ vmAdminPassword: xxxx
 
 As you can see in source code, in this deployment, two Virtual Machines has the same account name and password.
 
+### Note
+If you may face an error that tells you "Operation has exceeded maximum processing count.", please execute deploy command one more time. This error message may be due to the known bug repoted at this thread.
+https://t.co/4uZ9kmtydp
+
 # Validation
 To validate it does actually work, try the bidirectional domain name resolution.
 - From `vm-onp-adds`, check you would be able to resolve the private endpoint of storage account.

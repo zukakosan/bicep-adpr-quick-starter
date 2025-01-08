@@ -1,6 +1,7 @@
 param location string = 'japaneast'
 param adprInboundIp string
 param addsPrivateIp string
+param vnetHubName string
 
 var securityRules = loadJsonContent('./nsgrules/security-rules.json')
 // create nsg for hub
@@ -29,7 +30,6 @@ resource nsgOnp 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     securityRules: securityRules
   }
 }
-param vnetHubName string = 'vnet-hub'
 // create hub vnet
 resource vnetHub 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: vnetHubName
