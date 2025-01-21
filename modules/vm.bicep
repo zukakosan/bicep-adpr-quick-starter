@@ -141,5 +141,13 @@ resource onpWindowsVM 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
+// resource runCommandsAdds 'Microsoft.Compute/virtualMachines/runCommands@2024-07-01' = {
+//   parent: onpWindowsVM
+//   name: 'runCommands'
+//   location: location
+//   properties: {
+//     scriptUri: ''
+//   }
+// }
 // output windowsVMId string = windowsVM.id
 // output windowsVMName string = windowsVM.name

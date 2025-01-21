@@ -2,6 +2,7 @@ param location string = 'japaneast'
 param adprInboundIp string
 param addsPrivateIp string
 param vnetHubName string
+param vnetSpokeName string
 
 var securityRules = loadJsonContent('./nsgrules/security-rules.json')
 // create nsg for hub
@@ -100,7 +101,7 @@ resource vnetHub 'Microsoft.Network/virtualNetworks@2023-11-01' = {
 
 // create spoke vnet
 resource vnetSpoke 'Microsoft.Network/virtualNetworks@2023-11-01' = {
-  name: 'vnet-spoke'
+  name: vnetSpokeName
   location: location
   properties: {
     addressSpace: {

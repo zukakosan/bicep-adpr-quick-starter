@@ -2,6 +2,7 @@ param vmAdminUserName string
 @secure()
 param vmAdminPassword string
 param vnetHubName string
+param vnetSpokeName string
 
 param location string = resourceGroup().location
 param adprInboundIp string = '10.0.17.4'
@@ -12,6 +13,7 @@ module createVnet './modules/vnet.bicep' = {
   params: {
     location: location
     vnetHubName: vnetHubName
+    vnetSpokeName: vnetSpokeName
     adprInboundIp: adprInboundIp
     addsPrivateIp: addsPrivateIp
   }
@@ -81,6 +83,7 @@ module dnslog './modules/dnslog.bicep' = {
     location: location
     dnsRvPlcName: 'dnsRvPlcName'
     vnetHubName: vnetHubName
+    vnetSpokeName: vnetSpokeName
     lawId: createLaw.outputs.lawId
   }
   dependsOn:[
