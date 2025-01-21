@@ -39,6 +39,9 @@ resource dnsRvPlcVNetSpokeLink 'Microsoft.Network/dnsResolverPolicies/virtualNet
       id: vnetSpoke.id
     }
   }
+  dependsOn: [
+    dnsRvPlcVNetHubLink
+  ]
 }
 
 
