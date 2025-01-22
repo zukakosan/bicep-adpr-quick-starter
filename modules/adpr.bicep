@@ -48,6 +48,9 @@ resource dnsResolvers 'Microsoft.Network/dnsResolvers@2022-07-01' = {
         id: vnetHub::subnetOutbound.id
       }
     }
+    dependsOn: [
+      inboundEndpoints
+    ]
   }
 }
 
